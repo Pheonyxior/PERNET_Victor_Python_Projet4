@@ -1,4 +1,9 @@
-from Controller import controller
+from controller import controller as ctrl
+
+
+def main(controller):
+    controller.start()
+
 
 if __name__ == "__main__":
-    control = controller.new()
+    main(ctrl.Controller())

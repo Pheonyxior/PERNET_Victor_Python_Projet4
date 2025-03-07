@@ -1,7 +1,6 @@
-
 class Match:
-    #Un match unique doit être stocké sous la forme d'un tuple contenant deux listes, chacune
-    #contenant deux éléments : un joueur et un score.
+    # Un match unique doit être stocké sous la forme d'un tuple contenant deux
+    # listes, chacune contenant deux éléments : un joueur et un score.
     data: tuple = [], []
 
 
@@ -26,3 +25,7 @@ class Tournament:
     turns: list[Turn]
     registered_players: list[Player]
     description: str
+
+
+def test():
+    print()
