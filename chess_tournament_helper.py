@@ -1,4 +1,5 @@
 from controller import controller as ctrl
+import os
 
 
 def main(controller):
@@ -6,4 +7,5 @@ def main(controller):
 
 
 if __name__ == "__main__":
-    main(ctrl.Controller())
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    main(ctrl.Controller(dir_path))

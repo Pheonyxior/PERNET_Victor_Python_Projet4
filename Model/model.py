@@ -12,20 +12,26 @@ class Turn:
 
 
 class Player:
-    points: int = 0
+    def __init__(self, surname, name, date_of_birth, chess_id):
+        self.surname = surname
+        self.name = name
+        self.date_of_birth = date_of_birth
+        self.chess_id = chess_id
 
 
 class Tournament:
-    name: str
-    place: str
-    start_date: str
-    end_date: str
-    turn_number: int = 4
     current_turn: int = 0
-    turns: list[Turn]
-    registered_players: list[Player]
-    description: str
+    turns: list[Turn] = []
+    registered_players: list[Player] = []
 
+    def __init__(self, name, place, start_date, end_date,
+                 turn_number=4, description=""):
+        self.name = name
+        self.place = place
+        self.start_date = start_date
+        self.end_date = end_date
+        self.turn_number = turn_number
+        self.description = description
 
-def test():
-    print()
+    def register_player(self, player: Player):
+        self.registered_players.append(player)
