@@ -1,90 +1,71 @@
 {
-    "N5fhn tournament": {
-        "place": "1kD6PyuX",
-        "start_date": [
-            "23/1/2078"
-        ],
-        "end_date": [
-            "2/0/2066"
-        ],
+    "0": {
+        "name": "Tliptzin",
+        "place": "Gjoger\u00f0r",
+        "start_date": "25/9/2028",
+        "end_date": "4/10/2083",
         "turn_number": 4,
         "turns": [],
         "registered_players": [],
         "description": ""
     },
-    "VFRJT tournament": {
-        "place": "x4fWYOC2",
-        "start_date": [
-            "20/5/2021"
-        ],
-        "end_date": [
-            "29/2/2006"
-        ],
+    "1": {
+        "name": "Tozeh",
+        "place": "Inghildr",
+        "start_date": "9/8/2045",
+        "end_date": "5/11/2004",
         "turn_number": 4,
         "turns": [],
         "registered_players": [],
         "description": ""
     },
-    "Y3zfj tournament": {
-        "place": "ivNb01gG",
-        "start_date": [
-            "5/7/2090"
-        ],
-        "end_date": [
-            "22/2/2026"
-        ],
+    "2": {
+        "name": "Ahutlalli",
+        "place": "Grimolf",
+        "start_date": "16/0/2093",
+        "end_date": "22/7/2094",
         "turn_number": 4,
         "turns": [],
         "registered_players": [],
         "description": ""
     },
-    "X1cDI tournament": {
-        "place": "u0AxmKQ5",
-        "start_date": [
-            "22/4/2097"
-        ],
-        "end_date": [
-            "27/11/2059"
-        ],
+    "3": {
+        "name": "Zitlalzin tournament",
+        "place": "N\u00e4rve",
+        "start_date": "12/0/2033",
+        "end_date": "29/3/2074",
         "turn_number": 4,
         "turns": [],
         "registered_players": [],
         "description": ""
     },
-    "vd7HU tournament": {
-        "place": "g6nRfMEO",
-        "start_date": [
-            "29/12/2088"
+    "4": {
+        "name": "Necahual tournament",
+        "place": "Ingbrand",
+        "start_date": "7/6/2010",
+        "end_date": "17/6/2080",
+        "turn_number": 4,
+        "turns": [],
+        "registered_players": [
+            "ZO72176"
         ],
-        "end_date": [
-            "7/2/2034"
-        ],
+        "description": ""
+    },
+    "5": {
+        "name": "Nequioa tournament",
+        "place": "Grimmar",
+        "start_date": "29/2/2072",
+        "end_date": "17/1/2023",
         "turn_number": 4,
         "turns": [],
         "registered_players": [],
-        "description": ""
+        "description": "NEQUIOAAAAAAAAAAA"
     },
-    "1yqIf tournament": {
-        "place": "Unozv7fT",
-        "start_date": [
-            "20/0/2017"
-        ],
-        "end_date": [
-            "20/0/2039"
-        ],
-        "turn_number": 4,
-        "turns": [],
-        "registered_players": [],
-        "description": ""
-    },
-    "cQHDE tournament": {
-        "place": "i6C91xaN",
-        "start_date": [
-            "31/3/2010"
-        ],
-        "end_date": [
-            "10/2/2028"
-        ],
+    "6": {
+        "name": "Tacnahui tournament",
+        "place": "Grimar",
+        "start_date": "30/0/2081",
+        "end_date": "30/8/2041",
         "turn_number": 4,
         "turns": [],
         "registered_players": [],

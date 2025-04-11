@@ -7,5 +7,8 @@ def main(controller):
 
 
 if __name__ == "__main__":
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    main(ctrl.Controller(dir_path))
+    try:
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        main(ctrl.Controller(dir_path))
+    except KeyboardInterrupt:
+        print("KeyboardInterrupt")

@@ -20,9 +20,9 @@ class Player:
 
 
 class Tournament:
-    current_turn: int = 0
+    _current_turn: int = 0
     turns: list[Turn] = []
-    registered_players: list[Player] = []
+    registered_players: list[str] = []
 
     def __init__(self, name, place, start_date, end_date,
                  turn_number=4, description=""):
