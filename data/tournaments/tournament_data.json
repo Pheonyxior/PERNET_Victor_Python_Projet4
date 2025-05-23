@@ -1,71 +1,633 @@
 {
     "0": {
-        "name": "Tliptzin",
-        "place": "Gjoger\u00f0r",
-        "start_date": "25/9/2028",
-        "end_date": "4/10/2083",
+        "name": "disease tournament",
+        "place": "helicopters",
+        "start_date": "14/9/2056",
+        "end_date": "14/10/2055",
         "turn_number": 4,
-        "turns": [],
-        "registered_players": [],
-        "description": ""
-    },
-    "1": {
-        "name": "Tozeh",
-        "place": "Inghildr",
-        "start_date": "9/8/2045",
-        "end_date": "5/11/2004",
-        "turn_number": 4,
-        "turns": [],
-        "registered_players": [],
-        "description": ""
-    },
-    "2": {
-        "name": "Ahutlalli",
-        "place": "Grimolf",
-        "start_date": "16/0/2093",
-        "end_date": "22/7/2094",
-        "turn_number": 4,
-        "turns": [],
-        "registered_players": [],
-        "description": ""
-    },
-    "3": {
-        "name": "Zitlalzin tournament",
-        "place": "N\u00e4rve",
-        "start_date": "12/0/2033",
-        "end_date": "29/3/2074",
-        "turn_number": 4,
-        "turns": [],
-        "registered_players": [],
-        "description": ""
-    },
-    "4": {
-        "name": "Necahual tournament",
-        "place": "Ingbrand",
-        "start_date": "7/6/2010",
-        "end_date": "17/6/2080",
-        "turn_number": 4,
-        "turns": [],
+        "turns": [
+            {
+                "name": "Round 1",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "E125972",
+                            1
+                        ],
+                        [
+                            "Ul71257",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "Ru23559",
+                            -1
+                        ],
+                        [
+                            "bQ33070",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "Sk33858",
+                            0.5
+                        ],
+                        [
+                            "ET75240",
+                            0.5
+                        ]
+                    ],
+                    [
+                        [
+                            "oj61250",
+                            -1
+                        ],
+                        [
+                            "9I65618",
+                            1
+                        ]
+                    ]
+                ]
+            },
+            {
+                "name": "Round 2",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "Ru23559",
+                            -1
+                        ],
+                        [
+                            "Ul71257",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "oj61250",
+                            -1
+                        ],
+                        [
+                            "ET75240",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "Sk33858",
+                            1
+                        ],
+                        [
+                            "E125972",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "bQ33070",
+                            1
+                        ],
+                        [
+                            "9I65618",
+                            -1
+                        ]
+                    ]
+                ]
+            },
+            {
+                "name": "Round 3",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "bQ33070",
+                            1
+                        ],
+                        [
+                            "ET75240",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "E125972",
+                            1
+                        ],
+                        [
+                            "oj61250",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "Ru23559",
+                            1
+                        ],
+                        [
+                            "9I65618",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "Ul71257",
+                            1
+                        ],
+                        [
+                            "Sk33858",
+                            -1
+                        ]
+                    ]
+                ]
+            },
+            {
+                "name": "Round 4",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "bQ33070",
+                            1
+                        ],
+                        [
+                            "E125972",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "oj61250",
+                            1
+                        ],
+                        [
+                            "Ru23559",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "Sk33858",
+                            1
+                        ],
+                        [
+                            "9I65618",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "ET75240",
+                            1
+                        ],
+                        [
+                            "Ul71257",
+                            -1
+                        ]
+                    ]
+                ]
+            }
+        ],
         "registered_players": [
-            "ZO72176"
+            "ET75240",
+            "9I65618",
+            "Sk33858",
+            "bQ33070",
+            "Ul71257",
+            "oj61250",
+            "Ru23559",
+            "E125972"
         ],
         "description": ""
     },
-    "5": {
-        "name": "Nequioa tournament",
-        "place": "Grimmar",
-        "start_date": "29/2/2072",
-        "end_date": "17/1/2023",
+    "1": {
+        "name": "human tournament",
+        "place": "fathom",
+        "start_date": "30/8/2005",
+        "end_date": "10/1/2032",
         "turn_number": 4,
-        "turns": [],
-        "registered_players": [],
-        "description": "NEQUIOAAAAAAAAAAA"
+        "turns": [
+            {
+                "name": "Round 1",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "9I65618",
+                            1
+                        ],
+                        [
+                            "ET75240",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "wi46130",
+                            -1
+                        ],
+                        [
+                            "E125972",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "Sk33858",
+                            0.5
+                        ],
+                        [
+                            "Sa64278",
+                            0.5
+                        ]
+                    ],
+                    [
+                        [
+                            "Xx13787",
+                            0.5
+                        ],
+                        [
+                            "sm60868",
+                            0.5
+                        ]
+                    ]
+                ]
+            },
+            {
+                "name": "Round 2",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "ET75240",
+                            1
+                        ],
+                        [
+                            "wi46130",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "Sk33858",
+                            1
+                        ],
+                        [
+                            "sm60868",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "Sa64278",
+                            1
+                        ],
+                        [
+                            "Xx13787",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "E125972",
+                            1
+                        ],
+                        [
+                            "9I65618",
+                            -1
+                        ]
+                    ]
+                ]
+            },
+            {
+                "name": "Round 3",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "wi46130",
+                            -1
+                        ],
+                        [
+                            "Xx13787",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "sm60868",
+                            -1
+                        ],
+                        [
+                            "ET75240",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "9I65618",
+                            -1
+                        ],
+                        [
+                            "Sk33858",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "Sa64278",
+                            -1
+                        ],
+                        [
+                            "E125972",
+                            1
+                        ]
+                    ]
+                ]
+            },
+            {
+                "name": "Round 4",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "wi46130",
+                            0.5
+                        ],
+                        [
+                            "sm60868",
+                            0.5
+                        ]
+                    ],
+                    [
+                        [
+                            "9I65618",
+                            0.5
+                        ],
+                        [
+                            "Sa64278",
+                            0.5
+                        ]
+                    ],
+                    [
+                        [
+                            "Xx13787",
+                            1
+                        ],
+                        [
+                            "ET75240",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "Sk33858",
+                            1
+                        ],
+                        [
+                            "E125972",
+                            -1
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "registered_players": [
+            "sm60868",
+            "ET75240",
+            "9I65618",
+            "Sk33858",
+            "Xx13787",
+            "E125972",
+            "wi46130",
+            "Sa64278"
+        ],
+        "description": ""
     },
-    "6": {
-        "name": "Tacnahui tournament",
-        "place": "Grimar",
-        "start_date": "30/0/2081",
-        "end_date": "30/8/2041",
+    "2": {
+        "name": "erasers tournament",
+        "place": "stacks",
+        "start_date": "14/11/2092",
+        "end_date": "13/3/2057",
+        "turn_number": 4,
+        "turns": [
+            {
+                "name": "Round 1",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "sm60868",
+                            -1
+                        ],
+                        [
+                            "9I65618",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "Xx13787",
+                            0.5
+                        ],
+                        [
+                            "E125972",
+                            0.5
+                        ]
+                    ],
+                    [
+                        [
+                            "wi46130",
+                            -1
+                        ],
+                        [
+                            "ET75240",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "Sk33858",
+                            0.5
+                        ],
+                        [
+                            "Sa64278",
+                            0.5
+                        ]
+                    ]
+                ]
+            },
+            {
+                "name": "Round 2",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "sm60868",
+                            1
+                        ],
+                        [
+                            "wi46130",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "E125972",
+                            -1
+                        ],
+                        [
+                            "Sk33858",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "Xx13787",
+                            -1
+                        ],
+                        [
+                            "Sa64278",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "ET75240",
+                            1
+                        ],
+                        [
+                            "9I65618",
+                            -1
+                        ]
+                    ]
+                ]
+            },
+            {
+                "name": "Round 3",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "wi46130",
+                            1
+                        ],
+                        [
+                            "E125972",
+                            -1
+                        ]
+                    ],
+                    [
+                        [
+                            "Xx13787",
+                            0.5
+                        ],
+                        [
+                            "sm60868",
+                            0.5
+                        ]
+                    ],
+                    [
+                        [
+                            "9I65618",
+                            -1
+                        ],
+                        [
+                            "Sk33858",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "Sa64278",
+                            -1
+                        ],
+                        [
+                            "ET75240",
+                            1
+                        ]
+                    ]
+                ]
+            },
+            {
+                "name": "Round 4",
+                "start_time": 0,
+                "end_time": 10,
+                "matchs": [
+                    [
+                        [
+                            "ET75240",
+                            0.5
+                        ],
+                        [
+                            "Sk33858",
+                            0.5
+                        ]
+                    ],
+                    [
+                        [
+                            "Xx13787",
+                            0.5
+                        ],
+                        [
+                            "9I65618",
+                            0.5
+                        ]
+                    ],
+                    [
+                        [
+                            "wi46130",
+                            -1
+                        ],
+                        [
+                            "Sa64278",
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            "E125972",
+                            -1
+                        ],
+                        [
+                            "sm60868",
+                            1
+                        ]
+                    ]
+                ]
+            }
+        ],
+        "registered_players": [
+            "sm60868",
+            "ET75240",
+            "9I65618",
+            "Sk33858",
+            "Xx13787",
+            "E125972",
+            "wi46130",
+            "Sa64278"
+        ],
+        "description": ""
+    },
+    "0": {
+        "name": "vapors tournament",
+        "place": "gloves",
+        "start_date": "1/2/2011",
+        "end_date": "0/5/2018",
         "turn_number": 4,
         "turns": [],
         "registered_players": [],

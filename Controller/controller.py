@@ -8,7 +8,8 @@ from enum import auto
 # prototyping packages
 from random_strings import random_string
 import random
-from fictional_names import name_generator as name_gen
+import names as name_gen
+from random_words import RandomWords as word_gen
 
 QUIT_CMD = "Q"
 player_dic = {}
@@ -41,36 +42,37 @@ class Controller:
     def handle_user_input(self):
         while True:
             user_input = input()
-            # remplacer par q gérer majuscule minuscule
-            if user_input == QUIT_CMD:
-                print("\n\n Fermeture de Chess Tournament Helper. \n\n")
-                break
-            else:
+            try:
                 user_input = int(user_input)
-                match user_input:
-                    case start_cmd.CREATE_TOURNAMENT.value:
-                        self.create_tournament()
-                    case start_cmd.ADD_TOURNAMENT.value:
-                        self.add_player()
-                    case start_cmd.TOURNAMENT_LIST.value:
-                        view.tournament_list(tournament_dic)
-                        self.tournament_list(tournament_dic)
-                    case start_cmd.PLAYER_LIST.value:
-                        view.player_list(player_dic)
-                    case _:
-                        print(f"{user_input} n'est pas une commande reconnu.")
-                view.start_menu()
+            except:
+                pass
+            match user_input:
+                case 1:
+                    self.create_tournament()
+                case 2:
+                    self.add_player()
+                case 3:
+                    view.tournament_list(tournament_dic)
+                    self.tournament_list(tournament_dic)
+                case 4:
+                    view.player_list(player_dic)
+                case "Q":
+                    # remplacer par q gérer majuscule minuscule
+                    print("\n\n Fermeture de Chess Tournament Helper. \n\n")
+                    break
+                case _:
+                    print(f"{user_input} n'est pas une commande reconnu.")
+            view.start_menu()
 
     def create_tournament(self):
         view.create_tournament()
         name = input("Nom du tournoi: ")
-        print(cheat_cmd.RAND.value)
-        print(name)
         if name == cheat_cmd.RAND.value:
-            n = name_gen.generate_name(style="aztec").split(" ", 1)
-            name = n[0] + " tournament"
-            n = name_gen.generate_name(style="viking").split(" ", 1)
-            place = n[0]
+            rw = word_gen()
+            n = rw.random_word()
+            name = n + " tournament"
+            n = rw.random_word()
+            place = n
             start_date = str(f"{random.randint(0, 31)}/{random.randint(0, 12)}/{random.randint(2000, 2100)}")
             end_date = str(f"{random.randint(0, 31)}/{random.randint(0, 12)}/{random.randint(2000, 2100)}")
         else:
@@ -79,7 +81,7 @@ class Controller:
             end_date = input("Date de fin du tournoi (dd/mm/YYYY): ")
 
         new_tournament = model.Tournament(name, place, start_date, end_date)
-        self.register_tournament(new_tournament)
+        self.register_tournament_to_database(new_tournament)
 
     def get_tournament_database(self):
         global tournament_dic
@@ -98,16 +100,26 @@ class Controller:
             except Exception as e:
                 print("Echec du chargement de la base de donnée tournament_data.json : ", e)
 
-    def register_tournament(self, tournament: model.Tournament):
+    def register_tournament_to_database(self, tournament: model.Tournament, key = len(tournament_dic)):
         global tournament_dic
-        tournament_dic[len(tournament_dic)] = {
+        turns = []
+        for turn in tournament.turns:
+            turns.append({
+                    "name": turn.name,
+                    "start_time": turn.start_time,
+                    "end_time": turn.end_time,
+                    "matchs": turn.matchs
+                }
+            )
+        
+        tournament_dic[key] = {
                 "name": tournament.name,
                 "place": tournament.place,
                 # Scinder dates
                 "start_date": tournament.start_date,
                 "end_date": tournament.end_date,
                 "turn_number": tournament.turn_number,
-                "turns": tournament.turns,
+                "turns": turns,
                 "registered_players": tournament.registered_players,
                 "description": tournament.description
             }
@@ -129,21 +141,25 @@ class Controller:
         view.add_player()
         surname = input("Nom de famille du joueur: ")
         if surname == cheat_cmd.RAND.value:
-            n: str = name_gen.generate_name()
-            n = n.split(" ", 1)
-            surname = n[1]
-            name = n[0]
+            # n: str = name_gen.get_full_name()
+            # n = n.split(" ", 1)
+            surname = name_gen.get_first_name()
+            name = name_gen.get_last_name()
             date = str(f"{random.randint(0, 31)}/{random.randint(1, 12)}/{random.randint(1950, 2050)}")
             id = str(f"{random_string(2)}"
                      f"{random.randint(0, 9)}{random.randint(0, 9)}{random.randint(0, 9)}"
                      f"{random.randint(0, 9)}{random.randint(0, 9)}")
+            while id in player_dic.keys():
+                id = str(f"{random_string(2)}"
+                         f"{random.randint(0, 9)}{random.randint(0, 9)}{random.randint(0, 9)}"
+                         f"{random.randint(0, 9)}{random.randint(0, 9)}")
         else:
             name = input("Prénom du joueur: ")
             date = input(
                 "Date de naissance du joueur (dd/mm/YYYY): ")
             id = input(
                 "Identifiant national d’échecs du joueur: ")
-        # Check if id is valid
+        # TODO Check if id is valid (respecte le formattage et n'est pas déjà enregistré)
         new_player = model.Player(surname, name, date, id)
         self.register_player_to_database(new_player)
 
@@ -185,39 +201,144 @@ class Controller:
                       )
 
     def tournament_list(self, tournament_data: dict):
-        user_input = input("Modifier un tournoi ? (o/n): ")
-        if user_input == 'o':
-            user_input = input("Rentrer le numéro du tournoi à modifier: ")
-            while not user_input.isnumeric() and user_input not in tournament_data.keys:
-                user_input = input(f"{user_input} n'est pas un numéro.\n Rentrer le numéro du tournoi à modifier: ")
-            t_key = str(user_input)
-            print(f"Modifier {tournament_data[t_key]["name"]}.")
-            cmd = ("Rentrer le nombre indiqué pour executer la commande correspondante \n"
-                   "1: Ajouter des joueurs au tournoi.\n"
-                   "2: Modifier la description.\n")
-            cmd_amount = 2
-            user_input = input(cmd)
-            while not user_input.isnumeric() and user_input > cmd_amount:
-                user_input = input(f"{user_input} n'est pas un numéro de commande.\n {cmd}")
-            match int(user_input):
+        cmd =  ("Rentrer le nombre indiqué pour executer la commande correspondante \n"
+                "1: Commencer un tournoi.\n"
+                "2: Ajouter des joueurs à un tournoi.\n"
+                "3: Modifier la description d'un tournoi.\n"
+                "4: Retour.")
+        print(cmd)
+        valid = False
+        while not valid:
+            valid = True
+            user_input = input()
+            try:
+                user_input = int(user_input)
+            except:
+                pass
+            match user_input:
                 case 1:
-                    # TODO afficher les id disponibles
-                    cmd = "Rentrer l'identifiant national d'échec du joueur: "
-                    user_input = input(cmd)
-                    while user_input not in player_dic.keys():
-                        user_input = input(f"{user_input} n'est pas présent dans la base de donnée.\n {cmd}")
-                    tournament_data[t_key]["registered_players"].append(user_input)
+                    self.start_tournament(tournament_data)
                 case 2:
+                    self.add_player_to_tournament(tournament_data)
+                case 3:
+                    cmd = "Rentrer le numéro du tournoi auquel modifier la description: "
+                    user_input = input(cmd)
+                    while not user_input.isnumeric() or user_input not in tournament_data.keys():
+                        user_input = input(f"{user_input} n'est pas valable.\n{cmd}")
+                    t_key = str(user_input)
+                    
                     user_input = input("Rentrer une nouvelle description: ")
                     tournament_data[t_key]["description"] = user_input
+                    self.write_tournaments_to_database(tournament_data[t_key]["name"])
+                
+                case 4: return
+                
+                case _:
+                    print(f"{user_input} n'est pas une commande reconnu.")
+                    valid = False
+                    
+    def start_tournament(self, tournament_data):
+        cmd = "Rentrer le numéro du tournoi à commencer: "
+        user_input = input(cmd)
+        while not user_input.isnumeric() or user_input not in tournament_data.keys():
+            user_input = input(f"{user_input} n'est pas valable.\n{cmd}")
+        t_key = str(user_input)
+
+        tourn_dict = tournament_data[t_key]
+        tournament = self.get_tournament(tourn_dict)
+        # boucle de tours
+        for i in range(tournament.turn_number):
+            # TODO prendre date et heure actuelle
+            turn = model.Turn(f"Round {i+1}", 0)
+            tournament._current_turn = i
+            
+            player_ids = tournament.sorted_player_ids()
+            player_pairs = tournament.make_pairs(player_ids)
+            view.print_turn_start(turn.name, player_dic, player_pairs, tournament)
+            matchs = []
+            
+            for pair in player_pairs:
+                cmd = f"Est-ce que {player_dic[pair[0]]["surname"]} a gagné, perdu, ou match nulle ? (g/p/mn) "
+                
+                valid = False
+                rand = False
+                p0 = pair[0]
+                p1 = pair[1]
+                while not valid:
+                    valid = True
+                    user_input = input(cmd)
+                    if user_input == 'g':
+                        matchs.append(([p0, 1], [p1, -1]))
+                    elif user_input == 'p':
+                        matchs.append(([p0, -1], [p1, 1]))
+                    elif user_input == "mn":
+                        matchs.append(([p0, 0.5], [p1, 0.5]))
+                    elif user_input == "rand":
+                        rand = True
+                    else:
+                        valid = False
+                        print(f"{user_input} n'est pas reconnu.")
+                if rand:
+                    matchs = tournament.generate_rand_matchs(player_pairs)
+                    break
+
+            tournament.update_players_score(matchs)
+            view.print_turn_result(player_dic, tournament)
+            turn.matchs = matchs
+            #TODO prendre le temps actuel
+            turn.end_time = 10
+            tournament.turns.append(turn)
+        
+        self.register_tournament_to_database(tournament, t_key)
+
+    def get_tournament(self, tourn_dict: dict):
+        tournament = model.Tournament(
+            tourn_dict["name"],
+            tourn_dict["place"],
+            tourn_dict["start_date"],
+            tourn_dict["end_date"],
+            tourn_dict["registered_players"],
+            tourn_dict["turn_number"],
+            tourn_dict["description"]
+        )
+        return tournament
+
+    def add_player_to_tournament(self, tournament_data):
+        user_input = input("Rentrer le numéro du tournoi auquel ajouter un joueur: ")
+        while not user_input.isnumeric() or user_input not in tournament_data.keys():
+            user_input = input(f"{user_input} n'est pas valable.\n Rentrer le numéro du tournoi auquel ajouter un joueur: ")
+        t_key = str(user_input)
+        
+        add_more = True
+        view.player_list(player_dic)
+        while add_more:
+            cmd = "Rentrer l'identifiant national d'échec du joueur (Q pour annuler): "
+            user_input = input(cmd)
+            valid_id = False
+            while not valid_id:
+                if user_input == 'Q':
+                    return
+                if user_input not in player_dic.keys():
+                    user_input = input(f"{user_input} n'est pas présent dans la base de donnée.\n{cmd}")
+                elif user_input in tournament_data[t_key]["registered_players"]:
+                    user_input = input(f"{user_input} est déjà inscrit(e) à ce tournoi.\n{cmd}")
+                else:
+                    valid_id = True
+            tournament_data[t_key]["registered_players"].append(user_input)
             self.write_tournaments_to_database(tournament_data[t_key]["name"])
 
-        elif user_input == 'n':
-            return
-        else:
-            print(f"{user_input} n'est pas une commande reconnu.")
-            self.tournament_list(tournament_data)
-
+            cmd = "Ajouter un autre joueur ? (o/n): "
+            y_n = False
+            while not y_n:
+                y_n = True
+                user_input = input(cmd)
+                if user_input == 'o':
+                    continue
+                elif user_input == 'n':
+                    add_more = False
+                else:
+                    print(f"{user_input} n'est pas reconnu.")
+                    y_n = False
 
 if __name__ == "__main__":
     ctrl = Controller()

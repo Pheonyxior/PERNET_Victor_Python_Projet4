@@ -1,0 +1,275 @@
+Aurore -1.5
+Gaston -1.5
+Bilbo 0.5
+Charlotte 0.5
+Fleur 0.5
+Hanz 1.0
+Dianes 2.0
+Ekko 2.5
+A, [C, H, D, E] 
+G, [B, F, D, E]
+B, [C, G, H, E]
+C, [F, B, A, E]
+F, [H, C, D, G]
+H, [D, F, B, A]
+D, [H, F, G, A]
+E, [C, B, G, A]
+
+A/C
+
+G, [B, F, D, E]
+B, [G, H, E]
+F, [H, D, G]
+H, [D, F, B]
+D, [H, F, G]
+E, [B, G]
+
+E/B
+
+G, [F, D]
+F, [H, D, G]
+H, [D, F]
+D, [H, F, G]
+
+G/F 
+
+H, [D, F]
+D, [H, F, G]
+
+H/D
+
+A/C E/B  -1.5/0.5   0.5/2.5 
+G/F H/D  -1.5/0.5   1/2 
+
+-------------------------------------
+
+Bilbo -1.5
+Dianes -1.5
+Ekko 0.5
+Fleur 0.5
+Gaston 0.5
+Hanz 0.5
+Charlotte 2.0
+Aurore 3.0
+
+['B', 'D', 'E', 'F', 'G', 'H', 'C', 'A']
+B, [E, F, H, C]
+D, [E, F, G, A]
+E, [D, G, B, H]
+F, [H, D, B, A]
+G, [C, E, A, D]
+H, [C, F, E, B]
+C, [A, H, G, B]
+A, [C, G, F, D]
+
+B/E
+
+D, [F, G, A]
+F, [H, D, A]
+G, [C, A, D]
+H, [C, F]
+C, [A, H, G]
+A, [C, G, F, D]
+
+H/C
+
+D, [F, G, A]
+F, [D, A]
+G, [A, D]
+A, [G, F, D]
+
+F/D
+
+G, [A]
+A, [G, D]
+
+A/G
+
+B/E H/C  -1.5/0.5   0.5/2.0 
+F/D A/G  -1.5/0.5   0.5/3
+
+!!!!!
+# Si une erreur est détecté dans les paires :
+# Générer le dict de paires possibles pour chaque joueur, ordonné par leur score croissant
+B, [E, F, H, C]
+D, [E, F, G, A]
+E, [D, G, B, H]
+F, [H, D, B, A]
+G, [C, E, A, D]
+H, [C, F, E, B]
+C, [A, H, G, B]
+A, [C, G, F, D]
+# Prendre la première paire à la fin du dic
+A/C
+# Supprimer les clés de la paire ainsi que leur instances des les listes restantes
+B, [E, F, H]
+D, [E, F, G]
+E, [D, G, B, H]
+F, [H, D, B]
+G, [E, D]
+H, [F, E, B]
+# Prendre la première paire de la liste ayant le moins de paires possible
+G/E
+# Supprimer les clés de la paire ainsi que leur instances des les listes restantes
+B, [F, H]
+D, [F]
+F, [H, D, B]
+H, [F, B]
+# Prendre la première paire de la liste ayant le moins de paires possible
+D/F
+# Supprimer les clés de la paire ainsi que leur instances des les listes restantes
+B, [H]
+H, [B]
+
+B/H
+
+A/C G/E  3/2   0.5/0.5
+D/F B/H  -1.5/0.5   -1.5/0.5
+
+------------------------------
+
+Dianes -1.5
+Gaston -1.5
+Charlotte 0.5
+Ekko 0.5
+Fleur 0.5
+Hanz 0.5
+Aurore 1.0
+Bilbo 3.0
+
+['D', 'G', 'C', 'E', 'F', 'H', 'A', 'B']
+D, [G, F, A, B]
+G, [D, E, A, B]
+C, [E, F, H, B]
+E, [C, H, G, B]
+F, [H, A, C, D]
+H, [A, F, E, C]
+A, [H, F, G, D]
+B, [E, C, G, D]
+
+B/E
+
+D, [G, F, A]
+G, [D, A]
+C, [F, H]
+F, [H, A, C, D]
+H, [A, F, C]
+A, [H, F, G, D]
+
+G/D
+
+C, [F, H]
+F, [H, A, C]
+H, [A, F, C]
+A, [H, F]
+
+C/F
+
+H, [A]
+A, [H]
+
+H/A
+
+B/E G/D  3/0.5     -1.5/-1.5
+C/F H/A  0.5/0.5   0.5/1
+
+-------------------------------
+Charlotte -2.0
+Aurore -0.5
+Dianes 0.0
+Ekko 0.0
+Gaston 0.0
+Hanz 0.0
+Bilbo 1.5
+Fleur 2.0
+
+['C', 'A', 'D', 'E', 'G', 'H', 'B', 'F']
+C, [A, G, H, B, F]
+A, [D, C, E, H, F]
+D, [E, A, G, H, F]
+E, [G, D, H, A, B]
+G, [E, B, D, F, C]
+H, [B, E, D, A, C]
+B, [F, H, G, E, C]
+F, [B, G, D, A, C]
+
+F/B
+
+C, [A, G, H]
+A, [D, C, E, H]
+D, [E, A, G, H]
+E, [G, D, H, A]
+G, [E, D, C]
+H, [E, D, A, C]
+
+C/A
+
+D, [E, G, H]
+E, [G, D, H]
+G, [E, D]
+H, [E, D]
+
+G/E
+
+D, [H]
+H, [D]
+
+-------------------------------------------
+F, [G, D, B, C]
+G, [A, F, D, C]
+A, [H, G, E, D]
+H, [E, A, B, C]
+E, [D, H, B, A]
+D, [E, A, G, F]
+B, [C, E, H, F]
+C, [B, H, G, F]
+
+C/B
+
+F, [G, D]
+G, [A, F, D]
+A, [H, G, E, D]
+H, [E, A]
+E, [D, H, A]
+D, [E, A, G, F]
+
+F/G
+
+A, [H, E, D]
+H, [E, A]
+E, [D, H, A]
+D, [E, A]
+
+H/E
+
+A/D
+
+------------------------------------------
+['C', 'E', 'A', 'B', 'G', 'H', 'D', 'F']
+C, [E, A, B, G, H, F]
+E, [A, C, B, G, H, D]
+A, [E, G, C, H, D, F]
+B, [G, H, E, D, C, F]
+G, [B, D, A, F, E, C]
+H, [D, F, B, A, E, C]
+D, [F, H, G, B, A, E]
+F, [D, H, G, B, A, C]
+Fleur, Dianes
+C: ['E', 'A', 'B', 'G', 'H']
+E: ['A', 'C', 'B', 'G', 'H']
+A: ['E', 'G', 'C', 'H', 'F']
+B: ['G', 'H', 'E', 'C']
+G: ['B', 'A', 'E', 'C']
+H: ['F', 'B', 'A', 'E', 'C']
+Bilbo, Gaston
+C: ['E', 'A', 'G', 'H']
+E: ['A', 'C', 'G', 'H']
+A: ['E', 'C', 'H', 'F']
+H: ['F', 'A', 'E', 'C']
+Charlotte, Ekko
+A: ['C', 'H', 'F']
+H: ['F', 'A', 'C']
+Aurore, Charlotte
+
+C, [G, E, I, A, K, F, D, L, H]
+C, [E, I, A, K, L, D, H, F]
