@@ -8,12 +8,11 @@ class Match:
 
 
 class Turn:
-    matchs: list[tuple]
-    end_time: str
-
-    def __init__(self, name, start_time):
+    def __init__(self, name, start_time, end_time="0:0", matchs=[]):
         self.name = name
         self.start_time = start_time
+        self.matchs = matchs
+        self.end_time = end_time
 
 
 class Player:
@@ -25,9 +24,6 @@ class Player:
 
 
 class Tournament:
-    _current_turn: int = 0
-    turns: list[Turn] = []
-
     class PlayerData:
         def __init__(self, id):
             self.id = id
@@ -36,18 +32,30 @@ class Tournament:
             
 
     def __init__(self, name, place, start_date, end_date, registered_players=[],
-                 turn_number=4, description=""):
+                 turns=[], turn_number=4, description=""):
         self.name = name
         self.place = place
         self.start_date = start_date
         self.end_date = end_date
         self.registered_players = registered_players
+        self.turns: list[Turn] = []
+        for dic in turns:
+            turn = Turn(dic["name"], dic["start_time"], dic["end_time"], dic["matchs"])
+            self.turns.append(turn)
+        
+        self.current_turn = len(turns)
         self.turn_number = turn_number
         self.description = description
 
         self.players = {}
         for player in registered_players:
             self.players[player] = self.PlayerData(player)
+        
+        for turn in self.turns:
+            for match in turn.matchs:
+                for result in match:
+                    self.players[result[0]].score += result[1]
+        
     
     def sorted_player_ids(self, reverse = False):
         l = list(self.players.values())

@@ -29,7 +29,7 @@ def add_player():
 def tournament_list(data: dict):
     print("Afficher la liste des tournois enregistrés sur la base de donnée.\n")
 
-    table = pretty.PrettyTable()
+    table = pretty.PrettyTable(max_width=40)
     table.field_names = [
         "Num.", "Nom", "Lieu", "Date de début", "Date de fin", "Nombre de tours",
         "Joueurs enregistrés", "Description"]
@@ -38,7 +38,8 @@ def tournament_list(data: dict):
         tournament = data[tournament_key]
         row = [tournament_key]
         for key in tournament:
-            if key == "turns": continue
+            if key == "turns":
+                continue
             row.append(tournament[key])
         table.add_row(row)
 
@@ -65,9 +66,32 @@ def player_list(data: dict):
     print(table, "\n")
 
 
+def print_tournament_turns(turns, tournament_name, player_dic):
+    print(f"Afficher les rounds du {tournament_name}.\n")
+
+    for turn in turns:
+        print(f"{turn["name"]}, commencé à {turn["start_time"]}, fini à {turn["end_time"]}:")
+        table = pretty.PrettyTable(max_width=40)
+        table.field_names = ["Match", "Résultats"]
+        for match in turn["matchs"]:
+            match_data = []
+            p0 = player_dic[match[0][0]]["surname"]
+            p1 = player_dic[match[1][0]]["surname"]
+            match_data.append(f"{p0} / {p1}")
+            if match[0][1] == 1:
+                match_data.append("Gagné / Perdu")
+            elif match[1][1] == 1:
+                match_data.append("Perdu / Gagné")
+            else:
+                match_data.append("Match Nulle")
+
+            table.add_row(match_data)
+        print(table, '\n')
+
+
 def print_turn_start(turn_name, player_dic, pairs, tournament):
     print(f"\n Début du {turn_name}. \n")
-    
+
     table = pretty.PrettyTable()
     table.field_names = ["J1", "J1 Score",
                          "J2", "J2 Score"]
@@ -77,35 +101,14 @@ def print_turn_start(turn_name, player_dic, pairs, tournament):
         p1 = tournament.players[pair[1]]
         r1 = [player_dic[p1.id]["surname"], p1.score]
         table.add_row(r0 + r1)
-        
+
     print(table, '\n')
+
 
 def print_turn_result(player_dic, tournament):
     table = pretty.PrettyTable()
     table.field_names = ["Joueur", "Score"]
-    for player in tournament.sorted_player_ids(reverse = True):
+    for player in tournament.sorted_player_ids(reverse=True):
         table.add_row([player_dic[player]["surname"], tournament.players[player].score])
     
-    print('\n', table, '\n')
-    # table = pretty.PrettyTable()
-    # table.field_names = ["J1", "J1 G/P", "J1 Score",
-    #                      "J2", "J2 G/P", "J2 Score"]
-    # for match in matchs:
-    #     p1 = tournament.players[match[0][0]]
-    #     w1 = "MN"
-    #     if match[0][1] == 1:
-    #         w1 = 'G'
-    #     elif match[0][1] == -1:
-    #         w1 = 'P'
-    #     r1 = [player_dic[p1.id]["surname"], w1, p1.score]
-    #     p2 = tournament.players[match[1][0]]
-    #     w2 = "MN"
-    #     if match[1][1] == 1:
-    #         w2 = 'G'
-    #     elif match[1][1] == -1:
-    #         w2 = 'P'
-    #     r2 = [player_dic[p2.id]["surname"], w2, p2.score]
-    #     table.add_row(r1 + r2)
-        
-    # print(table)
-    
+    print(table, '\n')
