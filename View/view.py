@@ -110,5 +110,5 @@ def print_turn_result(player_dic, tournament):
     table.field_names = ["Joueur", "Score"]
     for player in tournament.sorted_player_ids(reverse=True):
         table.add_row([player_dic[player]["surname"], tournament.players[player].score])
-    
+
     print(table, '\n')

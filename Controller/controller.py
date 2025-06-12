@@ -268,9 +268,9 @@ class Controller:
             if tournament.current_turn == tournament.turn_number:
                 print(f"{tournament.name} a atteint le nombre de tour maximal et est donc considéré terminé.\n")
                 return
-            print("Reprise du tournoi à partir du Round", tournament.current_turn)
+            print("Reprise du tournoi à partir du Round", tournament.current_turn + 1)
             view.print_turn_result(player_dic, tournament)
-        
+
         for i in range(tournament.current_turn, tournament.turn_number):
             # TODO prendre date et heure actuelle
             turn = model.Turn(f"Round {i+1}", datetime.now().ctime())
@@ -278,7 +278,7 @@ class Controller:
 
             player_ids = tournament.sorted_player_ids()
             player_pairs = tournament.make_pairs(player_ids)
-            
+
             cmd = f"Commencer le {turn.name} ? (o/n) "
             valid = False
             while not valid:
