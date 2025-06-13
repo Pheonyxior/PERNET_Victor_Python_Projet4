@@ -1,4 +1,4 @@
-from controller import controller as ctrl
+from Controller import controller as ctrl
 import os
 
 

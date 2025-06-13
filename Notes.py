@@ -1,18 +1,21 @@
 # flake8: noqa
 
-# TODO : Ajouter fonction afficher résultats tournoi terminé
-# TODO : Voir comment initialiser les json databases s'ils n'existent pas
-# TODO : Voir s'il faut ajouter le setup.cfg au gitignore
-# TODO : Faire le requirements.txt
-# TODO : Parser les inputs de l'utilisateur pour s'assurer qu'elles sont corrects (dates ect...)
-# TODO : Gérer quand un utilisateur s'apprete à overwrite une entrée de tournoi existant dans la database
-# TODO : 
-# TODO : 
-# TODO : 
-# TODO : 
+# TODO : README
+# TODO : instructions pour executer flake8
 # TODO : confirmation flake8
+# TODO : 
+# TODO : 
+# TODO : 
+# TODO : 
+# TODO : 
 
 # * DONE : 
+# * DONE : 
+# * DONE : 
+# * DONE : Faire le requirements.txt
+# * DONE : Voir s'il faut ajouter le setup.cfg au gitignore
+# * DONE : Voir comment initialiser les json databases s'ils n'existent pas
+# * DONE : Ajouter fonction afficher résultats tournoi terminé
 # * DONE : Pouvoir interrompre un match et le reprendre
 # * DONE : Mettre le jour en plus de l'heure pour les dates
 # * DONE : Joueurs enregistrés et Tours et nombre de tours affichés quand tournois sélectionné
