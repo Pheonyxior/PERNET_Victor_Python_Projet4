@@ -1,5 +1,5 @@
-from View import view
-from Model import model
+from view import view
+from model import model
 import json
 import os
 from datetime import datetime
@@ -11,8 +11,6 @@ import names as name_gen
 from random_words import RandomWords as word_gen
 
 QUIT_CMD = "Q"
-player_dic = {}
-tournament_dic = {}
 
 
 class Controller:
@@ -21,8 +19,8 @@ class Controller:
         # print(dir_path)
 
     def start(self):
-        self.get_tournament_database()
-        self.get_player_database()
+        self.tournament_dic = self.get_tournament_database()
+        self.player_dic = self.get_player_database()
 
         view.starting_screen()
         self.handle_user_input()
@@ -40,10 +38,10 @@ class Controller:
                 case 2:
                     self.add_player()
                 case 3:
-                    view.tournament_list(tournament_dic)
-                    self.tournament_list(tournament_dic)
+                    view.tournament_list(self.tournament_dic)
+                    self.tournament_list(self.tournament_dic)
                 case 4:
-                    view.player_list(player_dic)
+                    view.player_list(self.player_dic)
                 case "Q":
                     # remplacer par q gérer majuscule minuscule
                     print("\n\n Fermeture de Chess Tournament Helper. \n\n")
@@ -73,7 +71,7 @@ class Controller:
         self.get_tournament_database()
 
     def get_tournament_database(self):
-        global tournament_dic
+        self.tournament_dic = {}
 
         file_path = self.dir_path + f"{os.sep}data{os.sep}tournaments{os.sep}tournament_data.json"
         try:
@@ -87,13 +85,15 @@ class Controller:
             file.write(json_object)
             file = open(file_path, "r")
         try:
-            tournament_dic = json.load(file)
+            self.tournament_dic = json.load(file)
             print("Base de donnée tournament_data.json chargée.")
         except Exception as e:
             print("Echec du chargement de la base de donnée tournament_data.json : ", e)
 
+        return self.tournament_dic
+
     def register_tournament_to_database(self, tournament: model.Tournament, db_key=-1):
-        global tournament_dic
+        # global self.tournament_dic
         turns = []
         for turn in tournament.turns:
             turns.append({
@@ -106,9 +106,9 @@ class Controller:
 
         key = db_key
         if key == -1:
-            key = len(tournament_dic)
+            key = len(self.tournament_dic)
 
-        tournament_dic[key] = {
+        self.tournament_dic[key] = {
                 "name": tournament.name,
                 "place": tournament.place,
                 # Scinder dates
@@ -122,7 +122,7 @@ class Controller:
         self.write_tournaments_to_database(tournament.name)
 
     def write_tournaments_to_database(self, tournament_name=""):
-        json_object = json.dumps(tournament_dic, indent=4)
+        json_object = json.dumps(self.tournament_dic, indent=4)
         file_path = self.dir_path + f"{
             os.sep}data{os.sep}tournaments{os.sep}tournament_data.json"
         # print(file_path)
@@ -145,7 +145,7 @@ class Controller:
             id = str(f"{random_string(2)}"
                      f"{random.randint(0, 9)}{random.randint(0, 9)}{random.randint(0, 9)}"
                      f"{random.randint(0, 9)}{random.randint(0, 9)}")
-            while id in player_dic.keys():
+            while id in self.player_dic.keys():
                 id = str(f"{random_string(2)}"
                          f"{random.randint(0, 9)}{random.randint(0, 9)}{random.randint(0, 9)}"
                          f"{random.randint(0, 9)}{random.randint(0, 9)}")
@@ -161,7 +161,7 @@ class Controller:
         self.get_player_database()
 
     def get_player_database(self):
-        global player_dic
+        self.player_dic = {}
 
         file_path = self.dir_path + f"{os.sep}data{os.sep}player_database.json"
         try:
@@ -175,21 +175,22 @@ class Controller:
             file.write(json_object)
             file = open(file_path, "r")
         try:
-            player_dic = json.load(file)
+            self.player_dic = json.load(file)
             print("Base de donnée player_database.json chargée.")
         except Exception as e:
             print("Echec du chargement de la base de donnée player_database.json : ", e)
+        return self.player_dic
 
     def register_player_to_database(self, player: model.Player):
-        global player_dic
+        # global self.player_dic
 
-        player_dic[player.chess_id] = {
+        self.player_dic[player.chess_id] = {
                 "surname": player.surname,
                 "name": player.name,
                 "date_of_birth": player.date_of_birth,
             }
 
-        json_object = json.dumps(player_dic, indent=4)
+        json_object = json.dumps(self.player_dic, indent=4)
         file_path = self.dir_path + f"{
             os.sep}data{os.sep}player_database.json"
         # print(file_path)
@@ -245,8 +246,8 @@ class Controller:
                     t_key = str(user_input)
 
                     tournament = tournament_data[t_key]
-                    view.print_tournament_turns(tournament["turns"], tournament["name"], player_dic)
-                    view.print_turn_result(player_dic, self.get_tournament(tournament))
+                    view.print_tournament_turns(tournament["turns"], tournament["name"], self.player_dic)
+                    view.print_turn_result(self.player_dic, self.get_tournament(tournament))
 
                 case 5: return
 
@@ -268,10 +269,10 @@ class Controller:
             if tournament.current_turn == tournament.turn_number:
                 print(f"{tournament.name} a atteint le nombre de tour maximal et est donc considéré terminé.\n")
                 print("Résultats du tournoi :\n")
-                view.print_turn_result(player_dic, tournament)
+                view.print_turn_result(self.player_dic, tournament)
                 return
             print("Reprise du tournoi à partir du Round", tournament.current_turn + 1)
-            view.print_turn_result(player_dic, tournament)
+            view.print_turn_result(self.player_dic, tournament)
 
         for i in range(tournament.current_turn, tournament.turn_number):
             # TODO prendre date et heure actuelle
@@ -295,11 +296,11 @@ class Controller:
                     valid = False
                     print(f"{user_input} n'est pas reconnu.")
 
-            view.print_turn_start(turn.name, player_dic, player_pairs, tournament)
+            view.print_turn_start(turn.name, self.player_dic, player_pairs, tournament)
             matchs = []
 
             for pair in player_pairs:
-                cmd = f"Est-ce que {player_dic[pair[0]]["surname"]} a gagné, perdu, ou match nulle ? (g/p/mn) "
+                cmd = f"Est-ce que {self.player_dic[pair[0]]["surname"]} a gagné, perdu, ou match nulle ? (g/p/mn) "
                 valid = False
                 rand = False
                 p0 = pair[0]
@@ -323,7 +324,7 @@ class Controller:
                     break
 
             tournament.update_players_score(matchs)
-            view.print_turn_result(player_dic, tournament)
+            view.print_turn_result(self.player_dic, tournament)
             turn.matchs = matchs
             # TODO prendre le temps actuel
             turn.end_time = datetime.now().ctime()
@@ -332,7 +333,7 @@ class Controller:
             self.register_tournament_to_database(tournament, t_key)
         print("\nNombre de tours maximums atteint: le tournoi est fini.\n")
         print("Résultats du tournoi: \n")
-        view.print_turn_result(player_dic, tournament)
+        view.print_turn_result(self.player_dic, tournament)
         tournament.end_date = datetime.now().ctime()
         self.register_tournament_to_database(tournament, t_key)
 
@@ -358,7 +359,7 @@ class Controller:
         t_key = str(user_input)
 
         add_more = True
-        view.player_list(player_dic)
+        view.player_list(self.player_dic)
         while add_more:
             cmd = "Rentrer l'identifiant national d'échec du joueur (Q pour annuler): "
             user_input = input(cmd)
@@ -368,13 +369,13 @@ class Controller:
                     return
                 if user_input == "fill":
                     i = 0
-                    for key in player_dic.keys():
+                    for key in self.player_dic.keys():
                         tournament_data[t_key]["registered_players"].append(key)
                         i += 1
                         if i == 8:
                             self.write_tournaments_to_database(tournament_data[t_key]["name"])
                             return
-                if user_input not in player_dic.keys():
+                if user_input not in self.player_dic.keys():
                     user_input = input(f"{user_input} n'est pas présent dans la base de donnée.\n{cmd}")
                 elif user_input in tournament_data[t_key]["registered_players"]:
                     user_input = input(f"{user_input} est déjà inscrit(e) à ce tournoi.\n{cmd}")

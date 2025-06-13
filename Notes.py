@@ -1,8 +1,8 @@
 # flake8: noqa
 
 # TODO : README
-# TODO : instructions pour executer flake8
-# TODO : confirmation flake8
+# TODO : Debug toute les fonctions 
+# TODO : 
 # TODO : 
 # TODO : 
 # TODO : 
@@ -10,7 +10,7 @@
 # TODO : 
 
 # * DONE : 
-# * DONE : 
+# * DONE : confirmation flake8
 # * DONE : 
 # * DONE : Faire le requirements.txt
 # * DONE : Voir s'il faut ajouter le setup.cfg au gitignore
