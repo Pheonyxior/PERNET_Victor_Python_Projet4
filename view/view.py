@@ -26,7 +26,7 @@ def add_player():
           "Veuillez entrer les informations suivantes: \n")
 
 
-def tournament_list(data: dict):
+def tournament_list(data: dict, player_dict: dict):
     print("Afficher la liste des tournois enregistrés sur la base de donnée.\n")
 
     table = pretty.PrettyTable(max_width=40)
@@ -39,6 +39,14 @@ def tournament_list(data: dict):
         row = [tournament_key]
         for key in tournament:
             if key == "turns":
+                continue
+            if key == "registered_players":
+                sorted_players = []
+                for chess_id in tournament[key]:
+                    player = player_dict[chess_id]
+                    sorted_players.append(player["name"])
+                sorted_players.sort(key=str.casefold)
+                row.append(sorted_players)
                 continue
             row.append(tournament[key])
         table.add_row(row)
@@ -54,16 +62,22 @@ def player_list(data: dict):
     table.field_names = [
         "Num.", "Nom", "Prénom", "Date de naissance", "Identifiant national d’échecs"]
 
+    new_list = list(data.values())
+    new_list.sort(key=lambda d: d['name'])
+
     for player_key in data.keys():
         player = data[player_key]
         row = [i]
-        for key in player.keys():
-            row.append(player[key])
+        print(new_list[i])
+        for key in new_list[i]:
+            row.append(new_list[i][key])
         row.append(player_key)
         table.add_row(row)
         i += 1
 
     print(table, "\n")
+    for player in new_list:
+        print(player)
 
 
 def print_tournament_turns(turns, tournament_name, player_dic):

@@ -38,7 +38,7 @@ class Controller:
                 case 2:
                     self.add_player()
                 case 3:
-                    view.tournament_list(self.tournament_dic)
+                    view.tournament_list(self.tournament_dic, self.player_dic)
                     self.tournament_list(self.tournament_dic)
                 case 4:
                     view.player_list(self.player_dic)
