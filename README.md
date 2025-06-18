@@ -10,7 +10,7 @@ Logiciel servant à organiser des tournois d'échecs, avec un système de sauveg
 4. Rentrer dans le terminal : 
 - `python -m venv env` pour créer un environnement virtuel.
 - `env\Scripts\activate.bat` pour activer l'environnement virtuel.
-- `pip install -r requirements.txt` pour installer les librairies nécessaires/
+- `pip install -r requirements.txt` pour installer les librairies nécessaires.
 
 ## **Utilisation**
 
@@ -26,13 +26,6 @@ Elles peuvent être modifiées manuellement si besoin. Si les fichiers json sont
 ### **Exemple d'utilisation**
 
 Dans le menu principal: 
-`Rentrer le nombre indiqué pour exécuter la commande correspondante.
-Rentrer 'Q' pour fermer le programme.
-
-1: Ajouter un nouveau tournoi à la base de donnée.
-2: Ajouter un joueur à la base de donnée.
-3: Liste des tournois.
-4: Liste des joueurs et joueuses.`  
 
 1. Ajouter un nouveau tournoi, rentrer le nom et le lieu du tournoi.
 2. Ajouter huit joueurs à la base de donnée. (Lorsque le nom de famille est demandé, vous pouvez rentrer `rand` pour remplir automatiquement les autres informations avec des données aléatoires.)
